@@ -1,0 +1,15 @@
+{
+    "folders": [
+        {
+            "path": "project15"
+        },
+        {
+            "name": "workingapp",
+            "path": "workingapp"
+        }
+    ],
+    "settings": {
+        "SAP HANA Database Explorer.ShowXsAdvancedConnections": true,
+        "SAP HANA Project Explorer.bind.confirm automatic undeployment": false
+    }
+}

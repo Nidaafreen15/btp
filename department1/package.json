@@ -1,0 +1,62 @@
+{
+  "name": "department1",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap-cloud-sdk/connectivity": "^2.15.0",
+    "@sap-cloud-sdk/http-client": "^3.18.0",
+    "@sap-cloud-sdk/resilience": "^3.18.0",
+    "@sap/cds": "^7.9.4",
+    "@sap/cds-hana": "^2",
+    "@sap/xsenv": "^5.2.0",
+    "@sap/xssec": "^4.2.1",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "g": "^2.0.1",
+    "npm": "^10.8.2",
+    "passport": "^0.7.0"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7",
+    "@sap/eslint-plugin-cds": "^3",
+    "@sap/ux-specification": "^1.120.15",
+    "eslint": "^9",
+    "rimraf": "^5.0.5"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-departmentapp": "cds watch --open departmentapp/webapp/index.html?sap-ui-xx-viewCache=false",
+    "undeploy": "cf undeploy department1 --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+    "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "cds": {
+    "requires": {
+      "fiori": {
+        "bypass_draft": true
+      },
+      "db": "hana",
+      "auth": "dummy",
+      "destinations": true,
+      "BpaDest": {
+        "kind": "odata-v2",
+        "credentials": {
+          "destination": "destination1"
+        },
+        "destinationOptions": {
+          "selectionStrategy": "alwaysProvider",
+          "jwt": null
+        }
+      }
+    }
+  },
+  "sapux": [
+    "app/departmentapp",
+    "app/project1"
+  ]
+}
